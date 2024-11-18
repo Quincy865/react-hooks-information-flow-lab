@@ -4,16 +4,17 @@ function Item({ name, category }) {
   const [isInCart, setIsInCart] = useState(false);
 
   function handleAddToCartClick() {
-    setIsInCart((isInCart) => !isInCart);
+    setIsInCart((prevState) => !prevState);
   }
 
   return (
-    <li className={isInCart ? "in-cart" : ""}>
+    <li className={`item ${isInCart ? "in-cart" : ""}`}>
       <span>{name}</span>
       <span className="category">{category}</span>
       <button
-        className={isInCart ? "remove" : "add"}
+        className={`cart-btn ${isInCart ? "remove" : "add"}`}
         onClick={handleAddToCartClick}
+        aria-label={isInCart ? `Remove ${name} from cart` : `Add ${name} to cart`}
       >
         {isInCart ? "Remove From" : "Add to"} Cart
       </button>
@@ -22,3 +23,4 @@ function Item({ name, category }) {
 }
 
 export default Item;
+
